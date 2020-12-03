@@ -14,8 +14,7 @@ package quiz.if1.pkg10119040.agusderidermawan;
  * program menampilkan pembayaran sebuah kasir Rock n Roll haircut
  */
 public class ServicePrice implements ServiceItem {
-    float priceService;
-    float discount;
+     private float priceService, discount;
 
     public float getPriceService() {
         return priceService;
@@ -24,39 +23,54 @@ public class ServicePrice implements ServiceItem {
     public void setPriceService(float priceService) {
         this.priceService = priceService;
     }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
+    
     @Override
     public void displayService() {
-        System.out.println("#*************************# ");
-        System.out.println("#***Rock n Roll Haircut***# ");
-        System.out.println("#*******Service List******# ");
-        System.out.println("1. Haircut : IDR 45K  ");
-        System.out.println("2. Haircut + Hairwash: IDR 55K  ");
-        System.out.println("3. Hairwash Only : IDR 15K ");
-        System.out.println("#*************************# ");
-        System.out.println("Choose (1/2/3): ");
+        System.out.println("#*************************#");
+        System.out.println("#***Rock n Roll Haircut***#");
+        System.out.println("#*******Service List******#");
+        System.out.println("1. Haircut : IDR 45K");
+        System.out.println("2. Haircut + Hairwash: IDR 55K");
+        System.out.println("3. Hairwash Only : IDR 15K");
+        System.out.println("#*************************#");
+        System.out.print("Choose (1/2/3): ");
     }
 
     @Override
     public float getPrice(int serviceItem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch(serviceItem) {
+            case 1: priceService = 45000;
+                    break;
+            case 2: priceService = 55000;
+                    break;
+            case 3: priceService = 15000;
+                    break;
+            default: priceService = 0;
+        }
+        return priceService;
     }
 
     @Override
     public boolean checkMemberStatus(String statusMember) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean stat = false;
+        if(statusMember.toUpperCase().equals("YES")) {
+            stat = true;
+        }
+        return stat;
     }
 
     @Override
+     @SuppressWarnings("empty-statement")
     public float getSale(boolean isMember, float parServicePrice) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        discount = 0;
+        if (isMember) {
+            discount = (10 * parServicePrice) / 100;
+        };
+        
+        return discount;
     }
     
+    public float getTotalPay(float priceService, float discount) {
+        return priceService - discount;
+    }
 }

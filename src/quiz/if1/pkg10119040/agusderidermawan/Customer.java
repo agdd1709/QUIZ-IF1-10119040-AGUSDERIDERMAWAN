@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
  * program menampilkan pembayaran sebuah kasir Rock n Roll haircut
  */
 public class Customer extends ServicePrice implements CustomerInvoice {
-    String name,email;
+    private String name, email;
     boolean member;
 
     public String getName() {
@@ -42,12 +42,12 @@ public class Customer extends ServicePrice implements CustomerInvoice {
     public void setMember(boolean member) {
         this.member = member;
     }
-
+    
     @Override
     public String currentTime() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");  
-        LocalDateTime now = LocalDateTime.now();  
-        return dtf.format(now);  
+        LocalDateTime waktu = LocalDateTime.now();
+        DateTimeFormatter FormatDate = DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm:ss");
+        String formatWaktu = waktu.format(FormatDate);
+        return formatWaktu;   
     }
-    
 }
